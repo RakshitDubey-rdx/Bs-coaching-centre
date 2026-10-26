@@ -1,0 +1,18 @@
+# OS generated
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+npm-debug.log*
+
+# Vercel
+.vercel
+
+# Node
+node_modules/
+
+# Local helpers
+code_source.html
+build_merged.py

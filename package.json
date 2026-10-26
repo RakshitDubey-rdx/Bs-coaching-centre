@@ -1,0 +1,20 @@
+{
+  "name": "bs-coaching-centre",
+  "version": "1.0.0",
+  "private": true,
+  "description": "BS Coaching Centre - Interactive Canvas Scroll Animation & Premier Academic Website",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve ."
+  },
+  "keywords": [
+    "scroll-animation",
+    "canvas",
+    "glassmorphism",
+    "tailwind",
+    "coaching-institute",
+    "vercel"
+  ],
+  "author": "Rakshit Dubey",
+  "license": "MIT"
+}

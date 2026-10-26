@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>BS Coaching Centre - Premier Exam &amp; Skill Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+  <style>
+
+@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}
+::-webkit-scrollbar{display:none;}
+
+/* Keyframe Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4), 0 10px 25px -5px rgba(79, 70, 229, 0.3); }
+  50% { box-shadow: 0 0 0 8px rgba(79, 70, 229, 0), 0 14px 28px -5px rgba(79, 70, 229, 0.45); }
+}
+@keyframes glow-pulse-crimson {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4), 0 10px 25px -5px rgba(239, 68, 68, 0.3); }
+  50% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0), 0 14px 28px -5px rgba(239, 68, 68, 0.45); }
+}
+@keyframes glow-pulse-emerald {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.45), 0 8px 24px -4px rgba(16, 185, 129, 0.4); }
+  50% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0), 0 12px 28px -4px rgba(16, 185, 129, 0.5); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+.animate-float-delayed {
+  animation: float 4.5s ease-in-out 1.2s infinite;
+}
+.animate-float-slow {
+  animation: float-slow 5s ease-in-out infinite;
+}
+.animate-glow {
+  animation: glow-pulse 3s infinite;
+}
+.animate-glow-crimson {
+  animation: glow-pulse-crimson 2.8s infinite;
+}
+.animate-glow-emerald {
+  animation: glow-pulse-emerald 2.5s infinite;
+}
+.shimmer-pill {
+  background: linear-gradient(90deg, rgba(238,242,255,0.8) 0%, rgba(255,255,255,0.95) 50%, rgba(238,242,255,0.8) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3.5s infinite linear;
+}
+
+/* Scroll reveal initial states */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+
+    /* ── Sticky canvas wrapper ── */
+    #scroll-container {
+      height: 650vh;
+      position: relative;
+      background: #000;
+    }
+
+    #sticky-wrap {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+    }
+
+    #canvas {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    /* ── Glassmorphism Navbar ── */
+    .glass-nav {
+      background: rgba(15, 23, 42, 0.76);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.12);
+    }
+
+    .glass-dropdown {
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.15);
+    }
+
+    /* ── Loading overlay ── */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      transition: opacity 0.6s ease;
+    }
+
+    #loader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loader-bar-wrap {
+      width: 260px;
+      height: 4px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+
+    #loader-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #6ee7b7, #3b82f6);
+      border-radius: 4px;
+      transition: width 0.1s linear;
+    }
+
+    #loader-text {
+      color: rgba(255,255,255,0.7);
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      margin-top: 12px;
+    }
+
+    /* ── Scroll hint ── */
+    #scroll-hint {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.7);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+      z-index: 10;
+    }
+
+    #scroll-hint.hidden {
+      opacity: 0;
+    }
+
+    .arrow {
+      width: 16px;
+      height: 16px;
+      border-right: 2px solid rgba(255,255,255,0.6);
+      border-bottom: 2px solid rgba(255,255,255,0.6);
+      transform: rotate(45deg);
+      animation: bounce 1.4s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: rotate(45deg) translateY(0); }
+      50%       { transform: rotate(45deg) translateY(5px); }
+    }
+
+    #frame-counter {
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      color: rgba(255,255,255,0.3);
+      font-size: 11px;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.05em;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+  </style>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"error":"#ba1a1a","on-primary-fixed":"#0f0069","inverse-surface":"#213145","on-primary":"#ffffff","on-error":"#ffffff","on-surface-variant":"#464555","indigo-light":"#EEF2FF","on-surface":"#0b1c30","on-secondary":"#ffffff","secondary-container":"#dae2fd","surface-canvas":"#F8FAFC","navy-surface":"#1E293B","tertiary":"#960014","primary":"#3525cd","surface-container-highest":"#d3e4fe","indigo-electric":"#4F46E5","on-secondary-fixed":"#131b2e","navy-deep":"#0F172A","surface-bright":"#f8f9ff","error-container":"#ffdad6","on-tertiary":"#ffffff","primary-fixed":"#e2dfff","border-subtle":"#E2E8F0","surface-tint":"#4d44e3","crimson-soft":"#FEF2F2","on-tertiary-fixed":"#410004","inverse-on-surface":"#eaf1ff","amber-soft":"#FFFBEB","crimson-brand":"#EF4444","surface-card":"#FFFFFF","surface-dim":"#cbdbf5","on-secondary-fixed-variant":"#3f465c","outline":"#777587","surface":"#f8f9ff","secondary-fixed":"#dae2fd","tertiary-container":"#bc1d25","surface-container-low":"#eff4ff","secondary":"#565e74","primary-fixed-dim":"#c3c0ff","surface-container":"#e5eeff","primary-container":"#4f46e5","on-background":"#0b1c30","tertiary-fixed-dim":"#ffb3ad","background":"#f8f9ff","amber-badge":"#F59E0B","inverse-primary":"#c3c0ff","on-primary-container":"#dad7ff","outline-variant":"#c7c4d8","surface-variant":"#d3e4fe","on-primary-fixed-variant":"#3323cc","on-tertiary-container":"#ffd0cc","secondary-fixed-dim":"#bec6e0","on-tertiary-fixed-variant":"#930013","surface-container-lowest":"#ffffff","surface-container-high":"#dce9ff","emerald-success":"#10B981","on-error-container":"#93000a","tertiary-fixed":"#ffdad7","on-secondary-container":"#5c647a"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"gutter":"1.5rem","margin-desktop":"3rem","margin":"2rem","space-lg":"1.5rem","space-sm":"0.5rem","margin-mobile":"1rem","gutter-lg":"2rem","space-md":"1rem","gutter-sm":"1rem","space-xs":"0.25rem","space-xl":"2.5rem"},fontFamily:{"headline-md":["Plus Jakarta Sans"],"body-md":["Inter"],"label-md":["Plus Jakarta Sans"],"body-sm":["Inter"],"label-sm":["Plus Jakarta Sans"],"display-hero-mobile":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"],"display-hero":["Plus Jakarta Sans"],"headline-sm":["Plus Jakarta Sans"],"headline-lg":["Plus Jakarta Sans"],"label-lg":["Plus Jakarta Sans"],"body-lg":["Inter"]},fontSize:{"headline-md":["1.75rem",{"lineHeight":"1.3","letterSpacing":"-0.015em","fontWeight":"600"}],"body-md":["1rem",{"lineHeight":"1.55","letterSpacing":"0","fontWeight":"400"}],"label-md":["0.8125rem",{"lineHeight":"1.2","letterSpacing":"0.02em","fontWeight":"600"}],"body-sm":["0.875rem",{"lineHeight":"1.5","letterSpacing":"0","fontWeight":"400"}],"label-sm":["0.6875rem",{"lineHeight":"1.2","letterSpacing":"0.04em","fontWeight":"700"}],"display-hero-mobile":["2.25rem",{"lineHeight":"1.2","letterSpacing":"-0.02em","fontWeight":"800"}],"headline-lg-mobile":["1.75rem",{"lineHeight":"1.25","letterSpacing":"-0.02em","fontWeight":"700"}],"display-hero":["3.5rem",{"lineHeight":"1.15","letterSpacing":"-0.03em","fontWeight":"800"}],"headline-sm":["1.25rem",{"lineHeight":"1.4","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-lg":["2.5rem",{"lineHeight":"1.2","letterSpacing":"-0.025em","fontWeight":"700"}],"label-lg":["0.9375rem",{"lineHeight":"1.3","letterSpacing":"0.01em","fontWeight":"600"}],"body-lg":["1.125rem",{"lineHeight":"1.6","letterSpacing":"-0.005em","fontWeight":"400"}]}}}};</script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased selection:bg-indigo-electric selection:text-white">
+
+
+  <!-- Glassmorphic Small Rounded Navigation Bar -->
+  <header id="main-nav" class="fixed top-3 sm:top-4 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-5xl transition-all duration-300">
+    <div class="glass-nav rounded-full px-4 sm:px-6 py-2 sm:py-2.5 flex items-center justify-between gap-3 shadow-[0_8px_32px_0_rgba(0,0,0,0.35)] border border-white/20">
+      <!-- Logo / Brand -->
+      <a href="#" class="flex items-center gap-2.5 group shrink-0">
+        <img src="https://lh3.googleusercontent.com/aida/AEtjO1Vj9HgvspDZIGMeF7K8X14oN5ecOLNnd1E1kOz0xNWzLGB-U1gqQPKw9_ntJPFOrDjJMVKHPEORSM7WgkNYkyS1OIhNQnIgThIlSl9qf0nZG5HhoANpBjfKIaay89Mm5jajWpBStoXUWcB8EFz57PQMHaRnNcgHGd1gm5-6_svld2gnGKf2ZAzREB0cfVUe5LRIjwynnwyaK3Cs_pZgpq4LASJiTZX7HLVcEykhcy2f2MPQu0EEPbrBJNOK" 
+             alt="BS Coaching Centre" 
+             class="h-7 w-auto object-contain transition-transform duration-200 group-hover:scale-105" />
+        <div class="flex flex-col">
+          <span class="font-headline-sm text-xs sm:text-sm font-bold tracking-tight text-white group-hover:text-indigo-300 transition-colors">BS COACHING</span>
+          <span class="text-[9px] text-white/60 -mt-1 tracking-wider uppercase font-semibold hidden sm:inline">Centre for Excellence</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden lg:flex items-center gap-5 text-xs font-semibold text-white/85">
+        <!-- Courses dropdown -->
+        <div class="relative group py-1">
+          <button type="button" class="flex items-center gap-1 hover:text-white transition-colors cursor-pointer">
+            <span>Courses</span>
+            <span class="material-symbols-outlined text-[14px] transition-transform duration-200 group-hover:rotate-180">expand_more</span>
+          </button>
+          <div class="absolute left-0 top-full pt-2 hidden group-hover:block w-64 transition-all">
+            <div class="glass-dropdown rounded-2xl p-2 shadow-2xl border border-white/15 backdrop-blur-2xl bg-slate-900/90 text-white">
+              <a href="#courses-section" onclick="switchCourseTab('govt')" class="flex flex-col p-2.5 rounded-xl hover:bg-white/10 transition-colors">
+                <span class="font-semibold text-xs text-white">Government Exam Prep</span>
+                <span class="text-[11px] text-white/60">SSC, Banking, Police, Railway, CTET</span>
+              </a>
+              <a href="#courses-section" onclick="switchCourseTab('skill')" class="flex flex-col p-2.5 rounded-xl hover:bg-white/10 transition-colors">
+                <span class="font-semibold text-xs text-white">Skill &amp; Computer Courses</span>
+                <span class="text-[11px] text-white/60">Tally, Excel, Coding &amp; Certifications</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <a href="#why-choose-us" class="hover:text-white transition-colors">Why Choose Us</a>
+        <a href="#metrics-section" class="hover:text-white transition-colors">Achievements</a>
+        <a href="#reviews-section" class="hover:text-white transition-colors">Student Reviews</a>
+        <a href="#campus-location" class="hover:text-white transition-colors">Contact Us</a>
+      </nav>
+
+      <!-- Right CTAs -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <a href="tel:+919910920358" class="hidden sm:flex items-center gap-1.5 text-xs text-white/80 hover:text-white transition-colors">
+          <span class="material-symbols-outlined text-[15px] text-amber-400">call</span>
+          <span class="font-medium">+91 99109 20358</span>
+        </a>
+        <a href="#demo-section" class="px-3.5 py-1.5 rounded-full bg-indigo-electric hover:bg-indigo-600 text-white text-xs font-bold shadow-md hover:shadow-indigo-500/30 active:scale-95 transition-all">
+          Book Demo
+        </a>
+        <!-- Mobile menu toggle -->
+        <button id="mobile-menu-toggle" type="button" class="lg:hidden flex items-center justify-center w-8 h-8 rounded-full bg-white/10 text-white hover:bg-white/20 transition cursor-pointer">
+          <span class="material-symbols-outlined text-[18px]">menu</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden mt-2 p-4 rounded-2xl glass-dropdown border border-white/15 backdrop-blur-2xl bg-slate-900/95 text-white flex flex-col gap-2.5 shadow-2xl">
+      <a href="#courses-section" onclick="toggleMobileMenu(); switchCourseTab('govt')" class="text-xs font-semibold py-1.5 px-2 rounded hover:bg-white/10">Government Exam Prep</a>
+      <a href="#courses-section" onclick="toggleMobileMenu(); switchCourseTab('skill')" class="text-xs font-semibold py-1.5 px-2 rounded hover:bg-white/10">Skill &amp; Computer Courses</a>
+      <a href="#why-choose-us" onclick="toggleMobileMenu()" class="text-xs font-semibold py-1.5 px-2 rounded hover:bg-white/10">Why Choose Us</a>
+      <a href="#metrics-section" onclick="toggleMobileMenu()" class="text-xs font-semibold py-1.5 px-2 rounded hover:bg-white/10">Achievements</a>
+      <a href="#reviews-section" onclick="toggleMobileMenu()" class="text-xs font-semibold py-1.5 px-2 rounded hover:bg-white/10">Student Reviews</a>
+      <a href="#campus-location" onclick="toggleMobileMenu()" class="text-xs font-semibold py-1.5 px-2 rounded hover:bg-white/10">Campus &amp; Location</a>
+      <div class="pt-2 border-t border-white/10 flex items-center justify-between">
+        <a href="tel:+919910920358" class="text-xs font-semibold flex items-center gap-1.5 text-amber-400">
+          <span class="material-symbols-outlined text-[16px]">call</span> +91 99109 20358
+        </a>
+        <a href="#demo-section" onclick="toggleMobileMenu()" class="px-3 py-1 rounded-full bg-indigo-electric text-white text-xs font-bold">
+          Free Demo
+        </a>
+      </div>
+    </div>
+  </header>
+
+
+
+  <!-- Loading screen -->
+  <div id="loader">
+    <div class="loader-bar-wrap">
+      <div id="loader-bar"></div>
+    </div>
+    <div id="loader-text">Loading frames… 0 / 240</div>
+  </div>
+
+  <!-- Scroll Animation Section -->
+  <section id="scroll-container" class="relative w-full bg-black">
+    <div id="sticky-wrap">
+      <canvas id="canvas"></canvas>
+
+      <!-- Scroll hint -->
+      <div id="scroll-hint">
+        <span class="tracking-widest uppercase font-semibold text-xs">Scroll to Explore</span>
+        <div class="arrow"></div>
+      </div>
+
+      <!-- Frame counter -->
+      <div id="frame-counter">Frame 1 / 240</div>
+    </div>
+  </section>
+
+
+<main class="w-full bg-surface-canvas relative z-20">
+  <div class="flex flex-col w-full">
+<!-- Hero Section -->
+<section class="relative w-full overflow-hidden bg-gradient-to-b from-indigo-light/50 via-surface-canvas to-surface-canvas py-space-xl">
+<div class="max-w-7xl mx-auto px-gutter relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<!-- Hero Text Content -->
+<div class="lg:col-span-6 flex flex-col space-y-space-md reveal-on-scroll revealed">
+<!-- Trust Badges Row -->
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-soft text-amber-badge text-label-sm font-label-sm shadow-sm hover:scale-105 transition-transform cursor-default">
+<span class="material-symbols-outlined text-[16px] text-amber-badge">star</span>
+              4.9/5 Rating (931+ Google Reviews)
+            </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-card text-on-surface text-label-sm font-label-sm shadow-sm hover:scale-105 transition-transform cursor-default">
+<span class="material-symbols-outlined text-[16px] text-emerald-success">verified</span>
+              Verified by Trustindex
+            </span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-fixed text-label-sm font-label-sm shadow-sm hover:scale-105 transition-transform cursor-default">
+<span class="material-symbols-outlined text-[16px] text-primary">devices</span>
+              Smart Classroom &amp; Lab Facilities
+            </span>
+</div>
+<!-- Main Hero Heading -->
+<div class="space-y-space-xs">
+<h1 class="font-display-hero text-display-hero text-on-surface tracking-tight leading-[1.1]">
+              Crack Government Exams &amp; Master <span class="text-indigo-electric inline-block hover:scale-[1.02] transition-transform">High-Demand</span> Digital Skills.
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl leading-relaxed">
+              Nangloi's Most Trusted Coaching Institute with 10+ Years of Proven Results. Get concept-based teaching, weekly mock tests, personalized mentorship, and hands-on computer labs.
+            </p>
+</div>
+<!-- Interactive Dual CTAs -->
+<div class="flex flex-wrap items-center gap-space-md pt-space-xs">
+<a class="relative inline-flex items-center justify-center gap-2 px-space-lg py-3.5 rounded-lg bg-indigo-electric text-on-primary font-label-md text-label-md shadow-lg shadow-indigo-electric/30 hover:bg-primary transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl hover:shadow-indigo-electric/40 active:scale-95 group animate-glow overflow-hidden" href="#demo-section">
+<span class="relative z-10 font-bold">Book Your Free Demo Class</span>
+<span class="material-symbols-outlined text-[18px] relative z-10 transition-transform duration-300 group-hover:translate-x-1.5">arrow_forward</span>
+<div class="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+</a>
+<a class="inline-flex items-center justify-center gap-2 px-space-lg py-3.5 rounded-lg bg-surface-card text-navy-deep font-label-md text-label-md shadow-sm border border-border-subtle hover:border-indigo-electric/30 hover:bg-indigo-light/50 transition-all duration-300 hover:-translate-y-0.5 active:scale-95 group" href="tel:+919910920358">
+<span class="material-symbols-outlined text-[18px] text-indigo-electric group-hover:rotate-12 transition-transform">call</span>
+<span>Call +91 99109 20358</span>
+</a>
+</div>
+<!-- Key Guarantees Row -->
+<div class="grid grid-cols-3 gap-space-sm pt-space-sm">
+<div class="flex items-center gap-2 group cursor-default">
+<span class="material-symbols-outlined text-emerald-success text-[20px] group-hover:scale-125 transition-transform">check_circle</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">Free Study Kits</span>
+</div>
+<div class="flex items-center gap-2 group cursor-default">
+<span class="material-symbols-outlined text-emerald-success text-[20px] group-hover:scale-125 transition-transform">check_circle</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">100% Doubt Support</span>
+</div>
+<div class="flex items-center gap-2 group cursor-default">
+<span class="material-symbols-outlined text-emerald-success text-[20px] group-hover:scale-125 transition-transform">check_circle</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">ISO Certified Hub</span>
+</div>
+</div>
+</div>
+<!-- Hero Visual Area -->
+<div class="lg:col-span-6 relative reveal-on-scroll revealed">
+<div class="relative rounded-2xl overflow-hidden shadow-2xl bg-surface-card border border-border-subtle group">
+<img class="w-full h-[460px] object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]" data-alt="An energetic modern smart classroom setting at an educational institute where an engaging teacher in blue ethnic attire explains mathematics on a giant digital interactive display board. Indian students are seated attentively with tablets, notebooks, and water bottles in bright daylight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBppXRZbXqLCN7jbL5IdgLeeR5oXngKe2qYOpMKKwqsCIKcq29T9Ylzc-Ty89c7AdC3UWwsHeHapIiwGJn3Zjc3rUYhvzniNvdDgmnY_Tu4fCy2W7lg2iewWx95rG16CNO8uDslN7UVY6gdSWsU9H8E7gxrHkQQ-GqB7CgcIN3C1axuqWps8D-95j8eGHdEizZ5R9PSUay0JxmyYuRA5MSr-g6r30M4h53Zkk6bgf1nx_XpB6WN-VFs_A"/>
+<div class="absolute inset-0 bg-gradient-to-t from-navy-deep/60 via-transparent to-transparent pointer-events-none"></div>
+</div>
+<!-- Floating Badge 1: Top Right -->
+<div class="absolute -top-4 -right-4 bg-surface-card/95 backdrop-blur-md p-space-md rounded-xl shadow-xl flex items-center gap-space-sm animate-float border border-white/60 hover:scale-105 transition-transform cursor-pointer">
+<div class="w-10 h-10 rounded-lg bg-amber-soft text-amber-badge flex items-center justify-center transition-transform hover:rotate-6">
+<span class="material-symbols-outlined text-[24px]">workspace_premium</span>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface font-bold">1,500+ Selections</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">SSC, Bank, Police &amp; Defence</p>
+</div>
+</div>
+<!-- Floating Badge 2: Bottom Left -->
+<div class="absolute -bottom-6 -left-6 bg-surface-card/95 backdrop-blur-md p-space-md rounded-xl shadow-xl flex items-center gap-space-sm animate-float-delayed border border-white/60 hover:scale-105 transition-transform cursor-pointer">
+<div class="w-10 h-10 rounded-lg bg-indigo-light text-indigo-electric flex items-center justify-center transition-transform hover:rotate-6">
+<span class="material-symbols-outlined text-[24px]">school</span>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface font-bold">10,000+ Students</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Trained Across All Wings</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Quick Trust Metrics Bar with Counter Animation -->
+<section class="w-full bg-surface-card py-space-lg shadow-sm border-y border-border-subtle" id="metrics-section">
+<div class="max-w-7xl mx-auto px-gutter">
+<div class="grid grid-cols-2 md:grid-cols-5 gap-space-md items-center">
+<!-- Metric 1 -->
+<div class="flex flex-col items-center text-center p-space-sm group hover:-translate-y-1 transition-transform duration-200">
+<span class="font-display-hero text-headline-lg text-indigo-electric font-extrabold tracking-tight group-hover:scale-105 transition-transform"><span class="counter-number" data-target="10000">10,000</span>+</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Students Trained</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[12px]">Classroom &amp; Practical Wings</span>
+</div>
+<!-- Metric 2 -->
+<div class="flex flex-col items-center text-center p-space-sm group hover:-translate-y-1 transition-transform duration-200">
+<span class="font-display-hero text-headline-lg text-crimson-brand font-extrabold tracking-tight group-hover:scale-105 transition-transform"><span class="counter-number" data-target="1500">1,500</span>+</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Successful Selections</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[12px]">Central &amp; State Gov Exams</span>
+</div>
+<!-- Metric 3 -->
+<div class="flex flex-col items-center text-center p-space-sm group hover:-translate-y-1 transition-transform duration-200">
+<span class="font-display-hero text-headline-lg text-navy-deep font-extrabold tracking-tight group-hover:scale-105 transition-transform"><span class="counter-number" data-target="10">10</span>+</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Years Experience</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[12px]">Premier Nangloi Academy</span>
+</div>
+<!-- Metric 4 -->
+<div class="flex flex-col items-center text-center p-space-sm group hover:-translate-y-1 transition-transform duration-200">
+<div class="flex items-center gap-1 group-hover:scale-105 transition-transform">
+<span class="font-display-hero text-headline-lg text-amber-badge font-extrabold tracking-tight">4.9★</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Google Rating</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[12px]">931+ Verified Reviews</span>
+</div>
+<!-- Metric 5 -->
+<div class="col-span-2 md:col-span-1 flex flex-col items-center text-center p-space-sm group hover:-translate-y-1 transition-transform duration-200">
+<span class="font-display-hero text-headline-lg text-emerald-success font-extrabold tracking-tight group-hover:scale-105 transition-transform"><span class="counter-number" data-target="100">100</span>%</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Doubt Support</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[12px]">One-on-One Faculty Help</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Two Core Pillars & Interactive Programs Showcase -->
+<section class="w-full py-space-xl bg-surface-canvas" id="courses-section">
+<div class="max-w-7xl mx-auto px-gutter">
+<!-- Section Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl gap-space-md reveal-on-scroll">
+<div>
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-light text-indigo-electric text-label-sm font-label-sm uppercase tracking-wider mb-2 shimmer-pill">
+            Academic &amp; Skill Ecosystem
+          </div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">
+            Explore Our Comprehensive Courses
+          </h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mt-1">
+            Tailored tracks built specifically for government recruitment exams and industry-standard digital computer certifications.
+          </p>
+</div>
+<!-- Pillar Switch Tabs -->
+<div class="inline-flex p-1.5 rounded-xl bg-surface-container gap-1 shadow-inner" id="course-tab-container">
+<button class="px-space-md py-2.5 rounded-lg text-label-md font-label-md transition-all duration-300 bg-indigo-electric text-on-primary shadow-sm hover:shadow-md cursor-pointer active:scale-95" id="tab-btn-govt" onclick="switchCourseTab('govt')" type="button">
+            Government Exam Prep
+          </button>
+<button class="px-space-md py-2.5 rounded-lg text-label-md font-label-md transition-all duration-300 text-on-surface-variant hover:text-on-surface hover:bg-surface/50 cursor-pointer active:scale-95" id="tab-btn-skill" onclick="switchCourseTab('skill')" type="button">
+            Computer &amp; Skill Programs
+          </button>
+</div>
+</div>
+<!-- Tab Content 1: Government Exam Preparation -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg transition-all duration-500" id="tab-content-govt">
+<!-- Course Card 1: SSC -->
+<div class="bg-surface-card rounded-2xl p-space-lg shadow-sm hover:shadow-xl hover:shadow-indigo-500/10 border border-transparent hover:border-indigo-electric/30 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group">
+<div class="space-y-space-md">
+<div class="flex items-center justify-between">
+<span class="px-2.5 py-1 rounded-full bg-indigo-light text-indigo-electric text-label-sm font-label-sm font-bold uppercase tracking-wider">
+                SSC Dream Job
+              </span>
+<span class="flex items-center text-emerald-success text-label-sm font-label-sm gap-1.5">
+<span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-success opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-success"></span></span> New Batch Live
+              </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold group-hover:text-indigo-electric transition-colors">
+              SSC CGL, CHSL, MTS &amp; GD
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Complete syllabus coverage with quantitative shortcuts, conceptual reasoning, updated general studies, and comprehensive mock test series.
+            </p>
+<div class="flex flex-wrap gap-2 pt-1">
+<span class="px-2 py-1 bg-surface-container text-on-surface text-label-sm font-label-sm rounded hover:bg-surface-container-high transition-colors">Test Series Included</span>
+<span class="px-2 py-1 bg-surface-container text-on-surface text-label-sm font-label-sm rounded hover:bg-surface-container-high transition-colors">Daily Doubt Classes</span>
+<span class="px-2 py-1 bg-surface-container text-on-surface text-label-sm font-label-sm rounded hover:bg-surface-container-high transition-colors">Free Books</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md flex items-center justify-between bg-surface-canvas -mx-space-lg -mb-space-lg p-space-md rounded-b-2xl border-t border-border-subtle/40">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Batch: Morning &amp; Evening</span>
+<a class="px-4 py-2 rounded-lg bg-indigo-electric text-on-primary font-label-md text-label-md hover:bg-primary transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-sm" href="#demo-section">
+              Book Demo
+            </a>
+</div>
+</div>
+<!-- Course Card 2: Banking & Insurance -->
+<div class="bg-surface-card rounded-2xl p-space-lg shadow-sm hover:shadow-xl hover:shadow-indigo-500/10 border border-transparent hover:border-indigo-electric/30 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group">
+<div class="space-y-space-md">
+<div class="flex items-center justify-between">
+<span class="px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-fixed text-label-sm font-label-sm font-bold uppercase tracking-wider">
+                Banking &amp; Insurance
+              </span>
+<span class="flex items-center text-emerald-success text-label-sm font-label-sm gap-1.5">
+<span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-success opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-success"></span></span> Speed Track
+              </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold group-hover:text-indigo-electric transition-colors">
+              IBPS, SBI PO &amp; Clerk, RRB
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              High-speed reasoning puzzles, data interpretation masterclasses, banking awareness modules, and interview preparation workshops.
+            </p>
+<div class="flex flex-wrap gap-2 pt-1">
+<span class="px-2 py-1 bg-surface-container text-on-surface text-label-sm font-label-sm rounded hover:bg-surface-container-high transition-colors">Speed Test Techniques</span>
+<span class="px-2 py-1 bg-surface-container text-on-surface text-label-sm font-label-sm rounded hover:bg-surface-container-high transition-colors">Interview Panels</span>
+<span class="px-2 py-1 bg-surface-container text-on-surface text-label-sm font-label-sm rounded hover:bg-surface-container-high transition-colors">Sectional Tests</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md flex items-center justify-between bg-surface-canvas -mx-space-lg -mb-space-lg p-space-md rounded-b-2xl border-t border-border-subtle/40">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Batch: Fast-Track &amp; Reg.</span>
+<a class="px-4 py-2 rounded-lg bg-indigo-electric text-on-primary font-label-md text-label-md hover:bg-primary transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-sm" href="#demo-section">
+              Book Demo
+            </a>
+</div>
+</div>
+<!-- Course Card 3: Defence & Police -->
+<div class="bg-surface-card rounded-2xl p-space-lg shadow-sm hover:shadow-xl hover:shadow-indigo-500/10 border border-transparent hover:border-indigo-electric/30 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group">
+<div class="space-y-space-md">
+<div class="flex items-center justify-between">
+<span class="px-2.5 py-1 rounded-full bg-amber-soft text-amber-badge text-label-sm font-label-sm font-bold uppercase tracking-wider">
+                Defence &amp; Police
+              </span>
+<span class="px-2 py-0.5 rounded bg-crimson-soft text-crimson-brand text-label-sm font-label-sm font-semibold animate-pulse">High Demand</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold group-hover:text-indigo-electric transition-colors">
+              NDA, CDS, AFCAT, Navy &amp; Delhi Police
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Comprehensive defence wing training covering written syllabus, SSB guidelines, Indian Navy AA/SSR/MR exams, and Delhi Police Constable/SI.
+            </p>
+<div class="flex flex-wrap gap-2 pt-1">
+<span class="px-2 py-1 bg-surface-container text-on-surface text-label-sm font-label-sm rounded hover:bg-surface-container-high transition-colors">Physical Test Support</span>
+<span class="px-2 py-1 bg-surface-container text-on-surface text-label-sm font-label-sm rounded hover:bg-surface-container-high transition-colors">Navy AA &amp; SSR</span>
+<span class="px-2 py-1 bg-surface-container text-on-surface text-label-sm font-label-sm rounded hover:bg-surface-container-high transition-colors">CAPF Batches</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md flex items-center justify-between bg-surface-canvas -mx-space-lg -mb-space-lg p-space-md rounded-b-2xl border-t border-border-subtle/40">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Batch: Morning / Weekend</span>
+<a class="px-4 py-2 rounded-lg bg-indigo-electric text-on-primary font-label-md text-label-md hover:bg-primary transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-sm" href="#demo-section">
+              Book Demo
+            </a>
+</div>
+</div>
+<!-- Course Card 4: Railway Exam Coaching -->
+<div class="bg-surface-card rounded-2xl p-space-lg shadow-sm hover:shadow-xl hover:shadow-indigo-500/10 border border-transparent hover:border-indigo-electric/30 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group">
+<div class="space-y-space-md">
+<div class="flex items-center justify-between">
+<span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface text-label-sm font-label-sm font-bold uppercase tracking-wider">
+                Railway Wing
+              </span>
+<span class="flex items-center text-emerald-success text-label-sm font-label-sm gap-1.5">
+<span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-success opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-success"></span></span> Updated Syllabus
+              </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold group-hover:text-indigo-electric transition-colors">
+              RRB NTPC, Group D &amp; ALP
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Smart preparation with General Science focus, technical concepts, mock exams replicating RRB CBT patterns, and speed drills.
+            </p>
+<div class="flex flex-wrap gap-2 pt-1">
+<span class="px-2 py-1 bg-surface-container text-on-surface text-label-sm font-label-sm rounded hover:bg-surface-container-high transition-colors">CBT Lab Practice</span>
+<span class="px-2 py-1 bg-surface-container text-on-surface text-label-sm font-label-sm rounded hover:bg-surface-container-high transition-colors">General Science Kit</span>
+<span class="px-2 py-1 bg-surface-container text-on-surface text-label-sm font-label-sm rounded hover:bg-surface-container-high transition-colors">Past 10 Yrs Papers</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md flex items-center justify-between bg-surface-canvas -mx-space-lg -mb-space-lg p-space-md rounded-b-2xl border-t border-border-subtle/40">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Batch: Regular Batches</span>
+<a class="px-4 py-2 rounded-lg bg-indigo-electric text-on-primary font-label-md text-label-md hover:bg-primary transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-sm" href="#demo-section">
+              Book Demo
+            </a>
+</div>
+</div>
+<!-- Course Card 5: Teaching Exams -->
+<div class="bg-surface-card rounded-2xl p-space-lg shadow-sm hover:shadow-xl hover:shadow-indigo-500/10 border border-transparent hover:border-indigo-electric/30 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group">
+<div class="space-y-space-md">
+<div class="flex items-center justify-between">
+<span class="px-2.5 py-1 rounded-full bg-indigo-light text-indigo-electric text-label-sm font-label-sm font-bold uppercase tracking-wider">
+                Teaching Faculty
+              </span>
+<span class="flex items-center text-amber-badge text-label-sm font-label-sm gap-1">
+<span class="material-symbols-outlined text-[14px]">military_tech</span> Top Qualifiers
+              </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold group-hover:text-indigo-electric transition-colors">
+              CTET &amp; DSSSB (PRT, TGT, PGT)
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              In-depth Child Development &amp; Pedagogy (CDP), Subject pedagogy, and previous year papers for Delhi Teaching and Central appointments.
+            </p>
+<div class="flex flex-wrap gap-2 pt-1">
+<span class="px-2 py-1 bg-surface-container text-on-surface text-label-sm font-label-sm rounded hover:bg-surface-container-high transition-colors">CDP Special Classes</span>
+<span class="px-2 py-1 bg-surface-container text-on-surface text-label-sm font-label-sm rounded hover:bg-surface-container-high transition-colors">Paper I &amp; II Covered</span>
+<span class="px-2 py-1 bg-surface-container text-on-surface text-label-sm font-label-sm rounded hover:bg-surface-container-high transition-colors">Subject Pedagogy</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md flex items-center justify-between bg-surface-canvas -mx-space-lg -mb-space-lg p-space-md rounded-b-2xl border-t border-border-subtle/40">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Batch: Morning &amp; Weekend</span>
+<a class="px-4 py-2 rounded-lg bg-indigo-electric text-on-primary font-label-md text-label-md hover:bg-primary transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-sm" href="#demo-section">
+              Book Demo
+            </a>
+</div>
+</div>
+<!-- Banner Card for Exam Guidance -->
+<div class="bg-gradient-to-br from-navy-deep to-navy-surface rounded-2xl p-space-lg shadow-lg flex flex-col justify-between text-surface-bright border border-indigo-500/20 hover:border-indigo-400/50 transition-all duration-300 transform hover:-translate-y-1.5 group">
+<div class="space-y-space-md">
+<div class="w-12 h-12 rounded-xl bg-surface-card/10 flex items-center justify-center text-amber-badge group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[28px]">contact_support</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-semibold text-surface-bright">
+              Not Sure Which Exam is Right for You?
+            </h3>
+<p class="font-body-sm text-body-sm text-surface-container-highest">
+              Speak with our chief mentors for a 1-on-1 profile evaluation based on your educational qualification, age eligibility, and target timeline.
+            </p>
+</div>
+<div class="pt-space-md">
+<a class="inline-flex items-center gap-2 px-space-md py-3 rounded-lg bg-crimson-brand text-on-primary font-label-md text-label-md hover:bg-tertiary transition-all duration-200 transform hover:scale-[1.02] active:scale-95 w-full justify-center shadow-lg shadow-crimson-brand/30" href="tel:+919910920358">
+<span class="material-symbols-outlined text-[18px]">phone_in_talk</span>
+<span>Talk to Chief Mentor</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Tab Content 2: Computer & Skill Development (Hidden by default, switched by JS) -->
+<div class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg transition-all duration-500" id="tab-content-skill">
+<!-- Lab Image Feature Card -->
+<div class="lg:col-span-3 rounded-2xl overflow-hidden shadow-md bg-surface-card grid grid-cols-1 lg:grid-cols-12 mb-2 border border-border-subtle group hover:shadow-xl transition-shadow">
+<div class="lg:col-span-7 h-64 lg:h-auto relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" data-alt="A modern tech computer training lab with high-tech computer screens showing coding tools and software, university students in casual attire collaborating together on desk workstations with headphones and water bottles." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSEbm3JDpBy3IhZnEz3C77mWuch4qJeiffaQCVFKloTwO9qlzDtFro7j5EicHQAd6cjCJgLRwwwpfsn_oBcvGEYqxLQH-ZN-eNdNH-i5mYk97BEYaQlnuM7iWCr89UvdeYCXO2GYVqDn3-7bVdsb5SzkMpxutTGrrnBRyiJq1EnTnYrur-VzcTMJcmWR2Ps_oxHn_tGLGN53-Wv2bRJ3MFk1eYcvWu2PGOPgvF61Wo-5kTxnR5ac6pWQ"/>
+</div>
+<div class="lg:col-span-5 p-space-lg flex flex-col justify-center space-y-space-sm bg-surface-card">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-soft text-emerald-success text-label-sm font-label-sm font-bold w-fit">
+<span class="material-symbols-outlined text-[14px]">laptop_mac</span> 100% Practical Computer Labs
+            </span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-bold">
+              Hands-On Digital Training with Real-World Projects
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Every student gets individual high-speed desktop stations, licensed industry software, real project portfolios, and government-recognized certifications.
+            </p>
+<div class="pt-2">
+<a class="inline-flex items-center gap-2 px-space-md py-2.5 rounded-lg bg-indigo-electric text-on-primary font-label-md text-label-md hover:bg-primary transition-all duration-200 transform hover:scale-105 shadow-md shadow-indigo-500/20" href="#demo-section">
+                Reserve Lab Station
+              </a>
+</div>
+</div>
+</div>
+<!-- Skill Card 1: ADCA -->
+<div class="bg-surface-card rounded-2xl p-space-lg shadow-sm hover:shadow-xl hover:shadow-indigo-500/10 border border-transparent hover:border-indigo-electric/30 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group">
+<div class="space-y-space-md">
+<div class="flex items-center justify-between">
+<span class="px-2.5 py-1 rounded-full bg-indigo-light text-indigo-electric text-label-sm font-label-sm font-bold uppercase tracking-wider">
+                Diploma Track
+              </span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface text-label-sm font-label-sm font-semibold">12 Months</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold group-hover:text-indigo-electric transition-colors">
+              ADCA (Advanced Diploma in Computer Applications)
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Complete career foundation: Office suite, database management, accounting in Tally, graphic basics, and essential programming concepts.
+            </p>
+<div class="flex flex-wrap gap-2 pt-1">
+<span class="px-2 py-1 bg-surface-container text-on-surface text-label-sm font-label-sm rounded hover:bg-surface-container-high transition-colors">ISO Certified Diploma</span>
+<span class="px-2 py-1 bg-surface-container text-on-surface text-label-sm font-label-sm rounded hover:bg-surface-container-high transition-colors">Job Assistance</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md flex items-center justify-between bg-surface-canvas -mx-space-lg -mb-space-lg p-space-md rounded-b-2xl border-t border-border-subtle/40">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Daily Practical Labs</span>
+<a class="px-4 py-2 rounded-lg bg-indigo-electric text-on-primary font-label-md text-label-md hover:bg-primary transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-sm" href="#demo-section">Enquire Now</a>
+</div>
+</div>
+<!-- Skill Card 2: Digital Marketing -->
+<div class="bg-surface-card rounded-2xl p-space-lg shadow-sm hover:shadow-xl hover:shadow-indigo-500/10 border border-transparent hover:border-indigo-electric/30 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group">
+<div class="space-y-space-md">
+<div class="flex items-center justify-between">
+<span class="px-2.5 py-1 rounded-full bg-amber-soft text-amber-badge text-label-sm font-label-sm font-bold uppercase tracking-wider">
+                Trending Career
+              </span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface text-label-sm font-label-sm font-semibold">3 - 6 Months</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold group-hover:text-indigo-electric transition-colors">
+              Digital Marketing &amp; Social Growth
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Master SEO, Google Ads, Meta Ad campaigns, content strategy, performance marketing, and client freelancing fundamentals.
+            </p>
+<div class="flex flex-wrap gap-2 pt-1">
+<span class="px-2 py-1 bg-surface-container text-on-surface text-label-sm font-label-sm rounded hover:bg-surface-container-high transition-colors">Live Ad Budget Run</span>
+<span class="px-2 py-1 bg-surface-container text-on-surface text-label-sm font-label-sm rounded hover:bg-surface-container-high transition-colors">Portfolio Building</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md flex items-center justify-between bg-surface-canvas -mx-space-lg -mb-space-lg p-space-md rounded-b-2xl border-t border-border-subtle/40">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Weekend Batches Open</span>
+<a class="px-4 py-2 rounded-lg bg-indigo-electric text-on-primary font-label-md text-label-md hover:bg-primary transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-sm" href="#demo-section">Enquire Now</a>
+</div>
+</div>
+<!-- Skill Card 3: Graphic Designing -->
+<div class="bg-surface-card rounded-2xl p-space-lg shadow-sm hover:shadow-xl hover:shadow-indigo-500/10 border border-transparent hover:border-indigo-electric/30 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group">
+<div class="space-y-space-md">
+<div class="flex items-center justify-between">
+<span class="px-2.5 py-1 rounded-full bg-crimson-soft text-crimson-brand text-label-sm font-label-sm font-bold uppercase tracking-wider">
+                Creative Arts
+              </span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface text-label-sm font-label-sm font-semibold">3 - 6 Months</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold group-hover:text-indigo-electric transition-colors">
+              Graphic Designing &amp; Creative Media
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Hands-on mastery over Adobe Photoshop, Illustrator, CorelDRAW, Canva Pro, logo creation, branding guidelines, and digital posters.
+            </p>
+<div class="flex flex-wrap gap-2 pt-1">
+<span class="px-2 py-1 bg-surface-container text-on-surface text-label-sm font-label-sm rounded hover:bg-surface-container-high transition-colors">100% Practical</span>
+<span class="px-2 py-1 bg-surface-container text-on-surface text-label-sm font-label-sm rounded hover:bg-surface-container-high transition-colors">Design Portfolio</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md flex items-center justify-between bg-surface-canvas -mx-space-lg -mb-space-lg p-space-md rounded-b-2xl border-t border-border-subtle/40">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Lab Shift Flexible</span>
+<a class="px-4 py-2 rounded-lg bg-indigo-electric text-on-primary font-label-md text-label-md hover:bg-primary transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-sm" href="#demo-section">Enquire Now</a>
+</div>
+</div>
+<!-- Skill Card 4: Basic Computer -->
+<div class="bg-surface-card rounded-2xl p-space-lg shadow-sm hover:shadow-xl hover:shadow-indigo-500/10 border border-transparent hover:border-indigo-electric/30 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group">
+<div class="space-y-space-md">
+<div class="flex items-center justify-between">
+<span class="px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-fixed text-label-sm font-label-sm font-bold uppercase tracking-wider">
+                Essential
+              </span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface text-label-sm font-label-sm font-semibold">3 Months</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold group-hover:text-indigo-electric transition-colors">
+              Basic Computer Course &amp; Typing
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              MS Office (Word, Excel, PowerPoint), web research, email etiquette, rapid English &amp; Hindi typing with speed certification tests.
+            </p>
+<div class="flex flex-wrap gap-2 pt-1">
+<span class="px-2 py-1 bg-surface-container text-on-surface text-label-sm font-label-sm rounded hover:bg-surface-container-high transition-colors">Typing Speed Meter</span>
+<span class="px-2 py-1 bg-surface-container text-on-surface text-label-sm font-label-sm rounded hover:bg-surface-container-high transition-colors">Beginner Friendly</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md flex items-center justify-between bg-surface-canvas -mx-space-lg -mb-space-lg p-space-md rounded-b-2xl border-t border-border-subtle/40">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Daily 1-Hour Batches</span>
+<a class="px-4 py-2 rounded-lg bg-indigo-electric text-on-primary font-label-md text-label-md hover:bg-primary transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-sm" href="#demo-section">Enquire Now</a>
+</div>
+</div>
+<!-- Skill Card 5: Tally Prime -->
+<div class="bg-surface-card rounded-2xl p-space-lg shadow-sm hover:shadow-xl hover:shadow-indigo-500/10 border border-transparent hover:border-indigo-electric/30 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group">
+<div class="space-y-space-md">
+<div class="flex items-center justify-between">
+<span class="px-2.5 py-1 rounded-full bg-indigo-light text-indigo-electric text-label-sm font-label-sm font-bold uppercase tracking-wider">
+                Accounting
+              </span>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface text-label-sm font-label-sm font-semibold">3 Months</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold group-hover:text-indigo-electric transition-colors">
+              Tally Prime &amp; Industrial Accounting with GST
+            </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Voucher entries, GST calculation, e-invoicing, balance sheet generation, payroll management, and real-time business accounts auditing.
+            </p>
+<div class="flex flex-wrap gap-2 pt-1">
+<span class="px-2 py-1 bg-surface-container text-on-surface text-label-sm font-label-sm rounded hover:bg-surface-container-high transition-colors">GST Portal Filing</span>
+<span class="px-2 py-1 bg-surface-container text-on-surface text-label-sm font-label-sm rounded hover:bg-surface-container-high transition-colors">Live Case Studies</span>
+</div>
+</div>
+<div class="pt-space-md mt-space-md flex items-center justify-between bg-surface-canvas -mx-space-lg -mb-space-lg p-space-md rounded-b-2xl border-t border-border-subtle/40">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Accounting Lab Certified</span>
+<a class="px-4 py-2 rounded-lg bg-indigo-electric text-on-primary font-label-md text-label-md hover:bg-primary transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-sm" href="#demo-section">Enquire Now</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Why Choose BS Coaching Centre Grid -->
+<section class="w-full py-space-xl bg-surface-card" id="why-choose-us">
+<div class="max-w-7xl mx-auto px-gutter">
+<div class="text-center max-w-3xl mx-auto mb-space-xl reveal-on-scroll">
+<span class="px-3 py-1 rounded-full bg-amber-soft text-amber-badge font-label-sm text-label-sm uppercase tracking-wider shimmer-pill">
+          The BS Coaching Edge
+        </span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold mt-2">
+          Why Nangloi Aspirants Choose Us First
+        </h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">
+          We combine structured pedagogical discipline with cutting-edge learning technology to transform dreams into assured career selections.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
+<!-- Feature 1 -->
+<div class="p-space-lg rounded-2xl bg-surface-canvas shadow-sm hover:shadow-xl hover:shadow-indigo-500/10 border border-transparent hover:border-indigo-electric/30 transition-all duration-300 transform hover:-translate-y-1.5 group reveal-on-scroll">
+<div class="w-12 h-12 rounded-xl bg-indigo-light text-indigo-electric flex items-center justify-center mb-space-md group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+<span class="material-symbols-outlined text-[26px]">psychology</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold mb-2 group-hover:text-indigo-electric transition-colors">
+            Expert Faculty &amp; Concept-Based Learning
+          </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Our experienced teachers break complex mathematics and logical reasoning into intuitive, shortcut-driven steps with individual attention.
+          </p>
+</div>
+<!-- Feature 2 -->
+<div class="p-space-lg rounded-2xl bg-surface-canvas shadow-sm hover:shadow-xl hover:shadow-indigo-500/10 border border-transparent hover:border-indigo-electric/30 transition-all duration-300 transform hover:-translate-y-1.5 group reveal-on-scroll">
+<div class="w-12 h-12 rounded-xl bg-secondary-container text-on-secondary-fixed flex items-center justify-center mb-space-md group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+<span class="material-symbols-outlined text-[26px]">tv_gen</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold mb-2 group-hover:text-indigo-electric transition-colors">
+            Smart Classrooms &amp; Practical Labs
+          </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Learn through large interactive display touchscreens, visual infographics, and dedicated computer stations for hands-on application.
+          </p>
+</div>
+<!-- Feature 3 -->
+<div class="p-space-lg rounded-2xl bg-surface-canvas shadow-sm hover:shadow-xl hover:shadow-crimson-brand/10 border border-transparent hover:border-crimson-brand/30 transition-all duration-300 transform hover:-translate-y-1.5 group reveal-on-scroll">
+<div class="w-12 h-12 rounded-xl bg-crimson-soft text-crimson-brand flex items-center justify-center mb-space-md group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+<span class="material-symbols-outlined text-[26px]">quiz</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold mb-2 group-hover:text-crimson-brand transition-colors">
+            Weekly Mock Tests &amp; Performance Tracking
+          </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Simulate real exam environments every Saturday with rank benchmarking, negative marking metrics, and faculty scorecard analysis.
+          </p>
+</div>
+<!-- Feature 4 -->
+<div class="p-space-lg rounded-2xl bg-surface-canvas shadow-sm hover:shadow-xl hover:shadow-amber-badge/10 border border-transparent hover:border-amber-badge/30 transition-all duration-300 transform hover:-translate-y-1.5 group reveal-on-scroll">
+<div class="w-12 h-12 rounded-xl bg-amber-soft text-amber-badge flex items-center justify-center mb-space-md group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+<span class="material-symbols-outlined text-[26px]">menu_book</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold mb-2 group-hover:text-amber-badge transition-colors">
+            Free Comprehensive Study Material
+          </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Receive thoroughly updated study modules, previous 10-year question banks, current affairs booklets, and practice workbooks at zero extra charge.
+          </p>
+</div>
+<!-- Feature 5 -->
+<div class="p-space-lg rounded-2xl bg-surface-canvas shadow-sm hover:shadow-xl hover:shadow-emerald-success/10 border border-transparent hover:border-emerald-success/30 transition-all duration-300 transform hover:-translate-y-1.5 group reveal-on-scroll">
+<div class="w-12 h-12 rounded-xl bg-emerald-soft text-emerald-success flex items-center justify-center mb-space-md group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+<span class="material-symbols-outlined text-[26px]">support_agent</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold mb-2 group-hover:text-emerald-success transition-colors">
+            Career Support Till Final Selection
+          </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Continuous handholding from notification forms to interview prep, personality development, typing benchmarks, and physical test assistance.
+          </p>
+</div>
+<!-- Feature 6 -->
+<div class="p-space-lg rounded-2xl bg-surface-canvas shadow-sm hover:shadow-xl hover:shadow-indigo-500/10 border border-transparent hover:border-indigo-electric/30 transition-all duration-300 transform hover:-translate-y-1.5 group reveal-on-scroll">
+<div class="w-12 h-12 rounded-xl bg-indigo-light text-indigo-electric flex items-center justify-center mb-space-md group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+<span class="material-symbols-outlined text-[26px]">pin_drop</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold mb-2 group-hover:text-indigo-electric transition-colors">
+            Prime Central Nangloi Location
+          </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Located right near Nangloi Chowk on Main Rohtak Road with seamless walking connectivity to Nangloi Metro Station &amp; major bus depots.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Verified Google Student Testimonials (Trustindex Verified) -->
+<section class="w-full py-space-xl bg-surface-canvas overflow-hidden" id="reviews-section">
+<div class="max-w-7xl mx-auto px-gutter">
+<!-- Section Header with Trustindex Badge -->
+<div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-lg mb-space-xl reveal-on-scroll">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2.5 py-0.5 rounded-full bg-emerald-soft text-emerald-success font-label-sm text-label-sm font-bold uppercase">
+              Google Verified Feedback
+            </span>
+<span class="text-amber-badge font-label-md text-label-md tracking-wider">★★★★★</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">
+            Real Words from Real Aspirants
+          </h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+            Read authentic Google reviews verified by Trustindex from students who studied right here at our Nangloi campus.
+          </p>
+</div>
+<!-- Trustindex Certified Card -->
+<div class="bg-surface-card p-space-md rounded-2xl shadow-sm border border-border-subtle flex items-center gap-space-md hover:shadow-md transition-shadow">
+<div class="w-12 h-12 rounded-full bg-emerald-success text-on-primary flex items-center justify-center font-bold text-xl shadow-md animate-pulse">
+<span class="material-symbols-outlined text-[28px]">verified</span>
+</div>
+<div>
+<div class="flex items-center gap-1">
+<span class="font-label-lg text-label-lg font-bold text-on-surface">Verified by Trustindex</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[12px] max-w-xs leading-tight">
+              Universal Symbol of Trust. Score 4.9/5 based on customer reviews over past 12 months.
+            </p>
+</div>
+</div>
+</div>
+<!-- Testimonial Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
+<!-- Review 1: Himanshu Reg -->
+<div class="bg-surface-card p-space-lg rounded-2xl shadow-sm hover:shadow-xl hover:shadow-indigo-500/10 border border-transparent hover:border-indigo-electric/30 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group reveal-on-scroll">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1 text-amber-badge group-hover:scale-105 transition-transform origin-left">
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">public</span> Posted on Google
+              </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface italic">
+              "Best nda coaching in Nangloi. Best coaching institutes in Nangloi with very supportive faculty and rigorous test series."
+            </p>
+</div>
+<div class="pt-space-md mt-space-md flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-indigo-light text-indigo-electric font-bold flex items-center justify-center font-headline-sm group-hover:scale-110 transition-transform">
+              H
+            </div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold">Himanshu Reg</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">NDA Defence Aspirant</p>
+</div>
+</div>
+</div>
+<!-- Review 2: Ashakumari Kumari -->
+<div class="bg-surface-card p-space-lg rounded-2xl shadow-sm hover:shadow-xl hover:shadow-indigo-500/10 border border-transparent hover:border-indigo-electric/30 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group reveal-on-scroll">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1 text-amber-badge group-hover:scale-105 transition-transform origin-left">
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">public</span> Posted on Google
+              </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface italic">
+              "Very good coaching centre in nangloi area. Free study material and regular mock test. Best in nangloi for competitive prep."
+            </p>
+</div>
+<div class="pt-space-md mt-space-md flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-crimson-soft text-crimson-brand font-bold flex items-center justify-center font-headline-sm group-hover:scale-110 transition-transform">
+              A
+            </div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold">Ashakumari Kumari</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Govt Exam Student</p>
+</div>
+</div>
+</div>
+<!-- Review 3: Shrikesh Yadav -->
+<div class="bg-surface-card p-space-lg rounded-2xl shadow-sm hover:shadow-xl hover:shadow-indigo-500/10 border border-transparent hover:border-indigo-electric/30 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group reveal-on-scroll">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1 text-amber-badge group-hover:scale-105 transition-transform origin-left">
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">public</span> Posted on Google
+              </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface italic">
+              "Best nda coaching in delhi. Conceptual clarity given by teachers is extraordinary. Concepts are made easy to grasp."
+            </p>
+</div>
+<div class="pt-space-md mt-space-md flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-fixed font-bold flex items-center justify-center font-headline-sm group-hover:scale-110 transition-transform">
+              S
+            </div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold">Shrikesh Yadav</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Defence Track</p>
+</div>
+</div>
+</div>
+<!-- Review 4: Rajesh Sharma -->
+<div class="bg-surface-card p-space-lg rounded-2xl shadow-sm hover:shadow-xl hover:shadow-indigo-500/10 border border-transparent hover:border-indigo-electric/30 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group reveal-on-scroll">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1 text-amber-badge group-hover:scale-105 transition-transform origin-left">
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">public</span> Posted on Google
+              </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface italic">
+              "They provide free study material and mock test. Best coaching centre in nangloi with regular personal feedback sessions."
+            </p>
+</div>
+<div class="pt-space-md mt-space-md flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-amber-soft text-amber-badge font-bold flex items-center justify-center font-headline-sm group-hover:scale-110 transition-transform">
+              R
+            </div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold">Rajesh Sharma</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">SSC CGL Qualifier</p>
+</div>
+</div>
+</div>
+<!-- Review 5: Sunil Verma -->
+<div class="bg-surface-card p-space-lg rounded-2xl shadow-sm hover:shadow-xl hover:shadow-indigo-500/10 border border-transparent hover:border-indigo-electric/30 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group reveal-on-scroll">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1 text-amber-badge group-hover:scale-105 transition-transform origin-left">
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">public</span> Posted on Google
+              </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface italic">
+              "Good facilities and good teachers in this centre. Best digital marketing coaching in nangloi with great lab practice."
+            </p>
+</div>
+<div class="pt-space-md mt-space-md flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-emerald-soft text-emerald-success font-bold flex items-center justify-center font-headline-sm group-hover:scale-110 transition-transform">
+              S
+            </div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold">Sunil Verma</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Digital Marketing Batch</p>
+</div>
+</div>
+</div>
+<!-- Review 6: Bhagwan Shai -->
+<div class="bg-surface-card p-space-lg rounded-2xl shadow-sm hover:shadow-xl hover:shadow-indigo-500/10 border border-transparent hover:border-indigo-electric/30 transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between group reveal-on-scroll">
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1 text-amber-badge group-hover:scale-105 transition-transform origin-left">
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+<span class="material-symbols-outlined text-[18px]">star</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">public</span> Posted on Google
+              </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface italic">
+              "Best institute in Nangloi, best digital course in Nangloi. Clean environment, disciplined classrooms and friendly staff."
+            </p>
+</div>
+<div class="pt-space-md mt-space-md flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-indigo-light text-indigo-electric font-bold flex items-center justify-center font-headline-sm group-hover:scale-110 transition-transform">
+              B
+            </div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold">Bhagwan Shai</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Computer Science Aspirant</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Demo Registration & Lead Section -->
+<section class="w-full py-space-xl bg-surface-card" id="demo-section">
+<div class="max-w-7xl mx-auto px-gutter">
+<div class="bg-gradient-to-br from-indigo-electric to-primary rounded-3xl p-space-xl shadow-2xl text-on-primary reveal-on-scroll relative overflow-hidden">
+<!-- Ambient background glow elements -->
+<div class="absolute -right-24 -top-24 w-96 h-96 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -left-24 -bottom-24 w-96 h-96 bg-indigo-400/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center relative z-10">
+<!-- Form Left Pitch -->
+<div class="lg:col-span-6 space-y-space-md">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-card/20 text-on-primary font-label-sm text-label-sm uppercase tracking-wider backdrop-blur-md border border-white/20">
+<span class="material-symbols-outlined text-[16px] animate-bounce">celebration</span> Limited Batch Seats Available
+            </div>
+<h2 class="font-headline-lg text-headline-lg font-extrabold text-on-primary leading-tight">
+              Book Your Free Demo Class &amp; Instant Callback
+            </h2>
+<p class="font-body-md text-body-md text-on-primary/90 max-w-lg leading-relaxed">
+              Experience the teaching quality firsthand before enrolling. Attend live classes, explore course syllabus materials, and test our smart learning facilities.
+            </p>
+<div class="space-y-space-sm pt-space-xs">
+<div class="flex items-center gap-3 group">
+<div class="w-8 h-8 rounded-full bg-surface-card/20 flex items-center justify-center text-on-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+<span class="font-body-md text-body-md text-on-primary">No registration fees for demo access</span>
+</div>
+<div class="flex items-center gap-3 group">
+<div class="w-8 h-8 rounded-full bg-surface-card/20 flex items-center justify-center text-on-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+</div>
+<span class="font-body-md text-body-md text-on-primary">Complimentary past-year exam questions kit</span>
+</div>
+<div class="flex items-center gap-3 group">
+<div class="w-8 h-8 rounded-full bg-surface-card/20 flex items-center justify-center text-on-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+</div>
+<span class="font-body-md text-body-md text-on-primary">Callback from senior faculty within 15 minutes</span>
+</div>
+</div>
+</div>
+<!-- Form Element Container -->
+<div class="lg:col-span-6">
+<div class="bg-surface-card text-on-surface rounded-2xl p-space-xl shadow-2xl border border-white/40">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface mb-1">
+                Claim Free Seat &amp; Demo Pass
+              </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
+                Fill the brief details below to instantly reserve your classroom or lab seat.
+              </p>
+<form class="space-y-space-md" id="demo-form" onsubmit="handleDemoSubmit(event)">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1.5" for="full_name">
+                    Full Student Name
+                  </label>
+<input class="w-full px-space-md py-3 rounded-lg bg-surface-canvas text-on-surface font-body-md text-body-md placeholder:text-outline border border-border-subtle outline-none focus:bg-surface-card focus:border-indigo-electric focus:ring-4 focus:ring-indigo-100 transition-all duration-200" id="full_name" placeholder="e.g. Rahul Sharma" required="" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1.5" for="mobile_number">
+                    10-Digit Mobile Number
+                  </label>
+<input class="w-full px-space-md py-3 rounded-lg bg-surface-canvas text-on-surface font-body-md text-body-md placeholder:text-outline border border-border-subtle outline-none focus:bg-surface-card focus:border-indigo-electric focus:ring-4 focus:ring-indigo-100 transition-all duration-200" id="mobile_number" pattern="[0-9]{10}" placeholder="e.g. 9910920358" required="" type="tel"/>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1.5" for="course_select">
+                      Course of Interest
+                    </label>
+<select class="w-full px-space-md py-3 rounded-lg bg-surface-canvas text-on-surface font-body-md text-body-md border border-border-subtle outline-none focus:bg-surface-card focus:border-indigo-electric focus:ring-4 focus:ring-indigo-100 transition-all duration-200 cursor-pointer" id="course_select" required="">
+<option value="">Select course...</option>
+<option value="SSC Prep (CGL/CHSL)">SSC (CGL, CHSL, MTS)</option>
+<option value="Banking (IBPS/SBI)">Bank PO &amp; Clerk (IBPS/SBI)</option>
+<option value="Defence (NDA/Navy/Police)">Defence (NDA / Police / Navy)</option>
+<option value="Railway NTPC/Group D">Railway (RRB NTPC / Group D)</option>
+<option value="Teaching (CTET/DSSSB)">CTET &amp; DSSSB Teaching</option>
+<option value="ADCA Computer Diploma">ADCA Computer Diploma</option>
+<option value="Digital Marketing">Digital Marketing Course</option>
+<option value="Graphic Designing">Graphic Designing &amp; Media</option>
+<option value="Tally Prime with GST">Tally Prime with GST</option>
+</select>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-1.5" for="slot_select">
+                      Preferred Batch Slot
+                    </label>
+<select class="w-full px-space-md py-3 rounded-lg bg-surface-canvas text-on-surface font-body-md text-body-md border border-border-subtle outline-none focus:bg-surface-card focus:border-indigo-electric focus:ring-4 focus:ring-indigo-100 transition-all duration-200 cursor-pointer" id="slot_select" required="">
+<option value="Morning">Morning (8:30 AM - 11:30 AM)</option>
+<option value="Afternoon">Noon (12:00 PM - 3:00 PM)</option>
+<option value="Evening">Evening (4:00 PM - 7:00 PM)</option>
+<option value="Weekend">Weekend Special (Sat &amp; Sun)</option>
+</select>
+</div>
+</div>
+<button class="relative w-full py-3.5 rounded-lg bg-crimson-brand text-on-primary font-label-md text-label-md font-bold hover:bg-tertiary transition-all duration-300 shadow-lg shadow-crimson-brand/30 flex items-center justify-center gap-2 cursor-pointer active:scale-98 animate-glow-crimson group overflow-hidden" id="demo-submit-btn" type="submit">
+<span class="material-symbols-outlined text-[20px] transition-transform duration-300 group-hover:rotate-12">how_to_reg</span>
+<span class="relative z-10">Confirm Free Demo Pass</span>
+<div class="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+</button>
+<p class="hidden text-emerald-success font-label-md text-label-md text-center pt-2 animate-fade-in" id="demo-success-msg">
+                  ✓ Demo Pass reserved! Our counseling team will call you within 15 minutes.
+                </p>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Campus & Location Info -->
+<section class="w-full py-space-xl bg-surface-canvas" id="campus-location">
+<div class="max-w-7xl mx-auto px-gutter">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl">
+<!-- Campus Info Panel -->
+<div class="lg:col-span-5 space-y-space-md reveal-on-scroll">
+<span class="px-3 py-1 rounded-full bg-secondary-container text-on-secondary-fixed font-label-sm text-label-sm uppercase tracking-wider shimmer-pill">
+            Campus Headquarters
+          </span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">
+            Visit Our Nangloi Centre
+          </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Conveniently situated right at Nangloi Chowk on Main Rohtak Road with quick walking access from metro stations and bus hubs.
+          </p>
+<div class="space-y-space-md pt-space-xs">
+<!-- Address Node -->
+<div class="flex items-start gap-space-md p-space-md rounded-xl bg-surface-card shadow-sm hover:shadow-md border border-border-subtle/50 transition-all duration-300 hover:translate-x-1 group">
+<div class="w-10 h-10 rounded-lg bg-crimson-soft text-crimson-brand flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[22px]">location_on</span>
+</div>
+<div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-semibold">Address</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                  1st Floor, Plot No. 2, Main Rohtak Road, Near Nangloi Chowk, Ashok Mohalla, Nangloi Jat, New Delhi – 110041
+                </p>
+</div>
+</div>
+<!-- Metro Connectivity Node -->
+<div class="flex items-start gap-space-md p-space-md rounded-xl bg-surface-card shadow-sm hover:shadow-md border border-border-subtle/50 transition-all duration-300 hover:translate-x-1 group">
+<div class="w-10 h-10 rounded-lg bg-emerald-soft text-emerald-success flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[22px]">subway</span>
+</div>
+<div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-semibold">Metro Connectivity</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                  Near Nangloi Metro Station (Green Line) - just 2 minutes walking distance opposite Metro Pillar 382.
+                </p>
+</div>
+</div>
+<!-- Phone Helpline Node -->
+<div class="flex items-start gap-space-md p-space-md rounded-xl bg-surface-card shadow-sm hover:shadow-md border border-border-subtle/50 transition-all duration-300 hover:translate-x-1 group">
+<div class="w-10 h-10 rounded-lg bg-indigo-light text-indigo-electric flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[22px]">support_agent</span>
+</div>
+<div>
+<h3 class="font-label-lg text-label-lg text-on-surface font-semibold">Direct Helplines</h3>
+<div class="flex flex-col gap-1 mt-1 font-body-sm text-body-sm text-on-surface-variant">
+<a class="hover:text-indigo-electric transition-colors font-semibold flex items-center gap-1 group/phone" href="tel:+919910920358">
+  +91 99109 20358 
+  <span class="material-symbols-outlined text-[14px] opacity-0 group-hover/phone:opacity-100 transition-opacity">call</span>
+</a>
+<a class="hover:text-indigo-electric transition-colors font-semibold flex items-center gap-1 group/phone" href="tel:+919213588000">
+  +91 92135 88000
+  <span class="material-symbols-outlined text-[14px] opacity-0 group-hover/phone:opacity-100 transition-opacity">call</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Location Map / Interactive Route Banner -->
+<div class="lg:col-span-7 flex flex-col justify-between reveal-on-scroll">
+<!-- Static map box container with data-location -->
+<div class="w-full h-80 rounded-2xl bg-surface-container shadow-md overflow-hidden relative group cursor-pointer" data-location="Nangloi Chowk, Main Rohtak Road, Nangloi Jat, New Delhi, 110041" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD-TO5Y8Q6NHrVe0YUnJG3DmY8IlfQOt4YjyvGO8C7F8VlFejB6ZjhHSm4aRUk_a7yHtABQdQLdstBGrlZr6UCkpSvlLj1BxXrS92SCH2MSbhlhI3Sxq9Z_vBNQlmy-GNbGARRzUvdDtBDfkC_aIlTowLqocFxXkdvyFWZBeX7UJVqw5W01xa0w2PhldkvEX1ho-8yeoTd0S-hV4TCGzX-03mSEC6UfXBzR_fqbFOSB0ia5UDvEuH76ag'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-navy-deep/20 group-hover:bg-navy-deep/10 transition-colors duration-300"></div>
+<div class="absolute bottom-4 left-4 bg-surface-card/95 backdrop-blur-md p-space-md rounded-xl shadow-lg max-w-sm border border-white/60 transition-transform duration-300 group-hover:scale-[1.02]">
+<div class="flex items-center gap-2">
+<span class="h-3 w-3 rounded-full bg-emerald-success animate-ping"></span>
+<p class="font-label-md text-label-md text-on-surface font-bold">BS Coaching Centre (Main Campus)</p>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[12px] mt-1">
+                Open Monday to Saturday: 8:00 AM - 8:00 PM | Sunday: 9:00 AM - 2:00 PM
+              </p>
+</div>
+</div>
+<!-- Bottom Action Highlights -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md pt-space-md">
+<a class="p-space-md rounded-xl bg-emerald-success text-on-primary flex items-center justify-between shadow-md hover:shadow-xl hover:shadow-emerald-500/20 hover:scale-[1.02] active:scale-95 transition-all duration-300 group" href="https://wa.me/919910920358" rel="noopener noreferrer" target="_blank">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 group-hover:rotate-6 transition-transform">chat</span>
+<div>
+<p class="font-label-md text-label-md font-bold">WhatsApp Counseling</p>
+<p class="font-label-sm text-label-sm text-on-primary/80">Get syllabus PDFs instantly</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[20px] transition-transform duration-300 group-hover:translate-x-1">chevron_right</span>
+</a>
+<a class="p-space-md rounded-xl bg-navy-deep text-surface-bright flex items-center justify-between shadow-md hover:shadow-xl hover:shadow-navy-deep/20 hover:scale-[1.02] active:scale-95 transition-all duration-300 group border border-slate-700/60" href="tel:+919910920358">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[24px] text-amber-badge group-hover:scale-110 group-hover:rotate-12 transition-transform">phone_in_talk</span>
+<div>
+<p class="font-label-md text-label-md font-bold">Call Campus Desk</p>
+<p class="font-label-sm text-label-sm text-surface-container-highest">Instant batch timing info</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[20px] transition-transform duration-300 group-hover:translate-x-1">chevron_right</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Script for Tab Switching & Motion Controls -->
+<script>
+    function switchCourseTab(type) {
+      const govtTab = document.getElementById('tab-content-govt');
+      const skillTab = document.getElementById('tab-content-skill');
+      const btnGovt = document.getElementById('tab-btn-govt');
+      const btnSkill = document.getElementById('tab-btn-skill');
+
+      if (!govtTab || !skillTab || !btnGovt || !btnSkill) return;
+
+      if (type === 'govt') {
+        govtTab.classList.remove('hidden');
+        skillTab.classList.add('hidden');
+        btnGovt.className = 'px-space-md py-2.5 rounded-lg text-label-md font-label-md transition-all duration-300 bg-indigo-electric text-on-primary shadow-sm hover:shadow-md cursor-pointer active:scale-95';
+        btnSkill.className = 'px-space-md py-2.5 rounded-lg text-label-md font-label-md transition-all duration-300 text-on-surface-variant hover:text-on-surface hover:bg-surface/50 cursor-pointer active:scale-95';
+      } else {
+        govtTab.classList.add('hidden');
+        skillTab.classList.remove('hidden');
+        btnSkill.className = 'px-space-md py-2.5 rounded-lg text-label-md font-label-md transition-all duration-300 bg-indigo-electric text-on-primary shadow-sm hover:shadow-md cursor-pointer active:scale-95';
+        btnGovt.className = 'px-space-md py-2.5 rounded-lg text-label-md font-label-md transition-all duration-300 text-on-surface-variant hover:text-on-surface hover:bg-surface/50 cursor-pointer active:scale-95';
+      }
+    }
+
+    function handleDemoSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('demo-submit-btn');
+      const msg = document.getElementById('demo-success-msg');
+      if (btn && msg) {
+        btn.innerHTML = '<span class="material-symbols-outlined text-[20px]">check_circle</span> Pass Reserved Successfully!';
+        btn.classList.remove('bg-crimson-brand', 'animate-glow-crimson');
+        btn.classList.add('bg-emerald-success', 'animate-glow-emerald');
+        msg.classList.remove('hidden');
+      }
+    }
+
+    // Scroll reveal observer
+    document.addEventListener('DOMContentLoaded', () => {
+      const reveals = document.querySelectorAll('.reveal-on-scroll');
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        reveals.forEach(el => observer.observe(el));
+      } else {
+        reveals.forEach(el => el.classList.add('revealed'));
+      }
+
+      // Count up numbers animation on scroll
+      const counterElements = document.querySelectorAll('.counter-number');
+      let countersAnimated = false;
+      const metricsSection = document.getElementById('metrics-section');
+      
+      function animateCounters() {
+        if (countersAnimated) return;
+        countersAnimated = true;
+        counterElements.forEach(counter => {
+          const target = +counter.getAttribute('data-target');
+          const duration = 1400; // ms
+          const stepTime = 25;
+          const steps = duration / stepTime;
+          const increment = target / steps;
+          let current = 0;
+
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              counter.textContent = target.toLocaleString('en-IN');
+              clearInterval(timer);
+            } else {
+              counter.textContent = Math.floor(current).toLocaleString('en-IN');
+            }
+          }, stepTime);
+        });
+      }
+
+      if (metricsSection && 'IntersectionObserver' in window) {
+        const metricObserver = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            animateCounters();
+          }
+        }, { threshold: 0.3 });
+        metricObserver.observe(metricsSection);
+      } else {
+        animateCounters();
+      }
+    });
+  </script>
+</div>
+</main>
+
+<aside class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-space-sm"><a class="flex items-center gap-space-xs px-space-md py-space-sm bg-emerald-success text-on-primary rounded-full shadow-[0_8px_24px_-4px_rgba(16,185,129,0.4)] hover:scale-110 active:scale-95 transition-all duration-300 animate-glow-emerald group" href="https://wa.me/919910920358" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[20px] group-hover:rotate-12 transition-transform">chat</span><span class="font-label-md text-label-md hidden sm:inline font-semibold">Chat with Counselor</span></a></aside>
+
+<footer class="w-full bg-navy-deep text-surface-bright pt-space-xl pb-space-lg"><div class="max-w-7xl mx-auto px-gutter"><div class="bg-navy-surface rounded-xl p-space-lg mb-space-xl border border-slate-700/60 shadow-lg"><div class="flex flex-col lg:flex-row items-center justify-between gap-space-lg"><div><h4 class="font-headline-sm text-headline-sm text-surface-bright mb-space-xs">Need Admission Guidance or Career Counseling?</h4><p class="font-body-md text-body-md text-surface-container-highest">Request an immediate callback from our expert faculty team.</p></div><div class="flex flex-col sm:flex-row w-full lg:w-auto items-center gap-space-sm"><input class="w-full sm:w-72 px-space-md py-space-sm rounded-lg bg-surface-canvas text-on-surface placeholder:text-outline font-body-sm text-body-sm outline-none focus:ring-2 focus:ring-primary-container transition-all" placeholder="Enter your 10-digit mobile" type="tel"/><button class="w-full sm:w-auto px-space-lg py-space-sm rounded-lg bg-crimson-brand text-on-primary font-label-md text-label-md hover:bg-tertiary-container transition-all duration-200 transform hover:scale-105 active:scale-95 shadow-md shadow-crimson-brand/20 cursor-pointer" type="button">Request Callback</button></div></div></div><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-xl mb-space-xl"><div class="space-y-space-md"><div class="flex items-center gap-space-sm group"><img alt="Image from https://bscoachingcentre.in/wp-content/uploads/2026/04/cropped-BS-Logo.png" class="h-8 w-auto object-contain bg-surface-card rounded p-1 group-hover:scale-105 transition-transform" src="https://lh3.googleusercontent.com/aida/AEtjO1Vj9HgvspDZIGMeF7K8X14oN5ecOLNnd1E1kOz0xNWzLGB-U1gqQPKw9_ntJPFOrDjJMVKHPEORSM7WgkNYkyS1OIhNQnIgThIlSl9qf0nZG5HhoANpBjfKIaay89Mm5jajWpBStoXUWcB8EFz57PQMHaRnNcgHGd1gm5-6_svld2gnGKf2ZAzREB0cfVUe5LRIjwynnwyaK3Cs_pZgpq4LASJiTZX7HLVcEykhcy2f2MPQu0EEPbrBJNOK"/><span class="font-headline-sm text-headline-sm text-surface-bright">BS COACHING</span></div><p class="font-body-sm text-body-sm text-surface-container-highest leading-relaxed">Delhi's accredited premier institute imparting high-yield classroom teaching, digitized test series, and mentorship for prestigious competitive examinations and digital job skills.</p><div class="flex items-center gap-space-xs text-amber-badge"><span class="material-symbols-outlined text-[20px]">star</span><span class="font-label-md text-label-md text-surface-bright">4.9 / 5.0 Rating</span><span class="font-body-sm text-body-sm text-surface-container-highest">(1,850+ Google Reviews)</span></div></div><div class="space-y-space-md"><h5 class="font-label-lg text-label-lg text-surface-bright uppercase tracking-wider">Exam Prep Programs</h5><ul class="space-y-space-sm font-body-sm text-body-sm text-surface-container-highest"><li><a class="hover:text-surface-bright hover:translate-x-1 inline-block transition-all duration-200" data-path="government-exam-prep" href="#courses-section" onclick="switchCourseTab('govt')">SSC CGL, CHSL, MTS &amp; GD</a></li><li><a class="hover:text-surface-bright hover:translate-x-1 inline-block transition-all duration-200" data-path="government-exam-prep" href="#courses-section" onclick="switchCourseTab('govt')">IBPS, SBI PO &amp; Clerk Banking Tracks</a></li><li><a class="hover:text-surface-bright hover:translate-x-1 inline-block transition-all duration-200" data-path="government-exam-prep" href="#courses-section" onclick="switchCourseTab('govt')">Delhi Police &amp; Paramilitary Exams</a></li><li><a class="hover:text-surface-bright hover:translate-x-1 inline-block transition-all duration-200" data-path="government-exam-prep" href="#courses-section" onclick="switchCourseTab('govt')">Railway RRB NTPC &amp; Group D</a></li><li><a class="hover:text-surface-bright hover:translate-x-1 inline-block transition-all duration-200" data-path="government-exam-prep" href="#courses-section" onclick="switchCourseTab('govt')">CTET &amp; State Teacher Eligibility</a></li><li><a class="hover:text-surface-bright hover:translate-x-1 inline-block transition-all duration-200" data-path="government-exam-prep" href="#courses-section" onclick="switchCourseTab('govt')">NDA, CDS &amp; AFCAT Defence Wing</a></li></ul></div><div class="space-y-space-md"><h5 class="font-label-lg text-label-lg text-surface-bright uppercase tracking-wider">Skill &amp; Digital Courses</h5><ul class="space-y-space-sm font-body-sm text-body-sm text-surface-container-highest"><li><a class="hover:text-surface-bright hover:translate-x-1 inline-block transition-all duration-200" data-path="skill-computer-courses" href="#courses-section" onclick="switchCourseTab('skill')">Advanced Excel &amp; MIS Reporting</a></li><li><a class="hover:text-surface-bright hover:translate-x-1 inline-block transition-all duration-200" data-path="skill-computer-courses" href="#courses-section" onclick="switchCourseTab('skill')">Tally Prime with GST Certification</a></li><li><a class="hover:text-surface-bright hover:translate-x-1 inline-block transition-all duration-200" data-path="skill-computer-courses" href="#courses-section" onclick="switchCourseTab('skill')">Full-Stack Web Development</a></li><li><a class="hover:text-surface-bright hover:translate-x-1 inline-block transition-all duration-200" data-path="skill-computer-courses" href="#courses-section" onclick="switchCourseTab('skill')">Python &amp; Data Analysis Bootcamp</a></li><li><a class="hover:text-surface-bright hover:translate-x-1 inline-block transition-all duration-200" data-path="skill-computer-courses" href="#courses-section" onclick="switchCourseTab('skill')">Spoken English &amp; Interview Prep</a></li><li><a class="hover:text-surface-bright hover:translate-x-1 inline-block transition-all duration-200" data-path="skill-computer-courses" href="#courses-section" onclick="switchCourseTab('skill')">Graphic Designing &amp; Video Editing</a></li></ul></div><div class="space-y-space-md"><h5 class="font-label-lg text-label-lg text-surface-bright uppercase tracking-wider">Head Campus</h5><div class="flex items-start gap-space-sm font-body-sm text-body-sm text-surface-container-highest"><span class="material-symbols-outlined text-crimson-brand text-[20px] mt-0.5 animate-bounce">location_on</span><p class="leading-relaxed">Nangloi Chowk, Main Rohtak Road, Opposite Metro Pillar 382, Nangloi, New Delhi, Delhi - 110041</p></div><div class="flex items-center gap-space-sm font-body-sm text-body-sm text-surface-container-highest"><span class="material-symbols-outlined text-primary-fixed text-[20px]">call</span><p>+91 99109 20358 / +91 92135 88000</p></div><div class="flex items-center gap-space-sm font-body-sm text-body-sm text-surface-container-highest"><span class="material-symbols-outlined text-primary-fixed text-[20px]">mail</span><p>info@bscoachingcentre.in</p></div><div class="pt-space-xs"><div class="flex items-center gap-space-sm text-surface-container-highest"><a aria-label="Facebook" class="w-9 h-9 rounded-lg bg-navy-surface flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all duration-200 hover:scale-110" href="#"><span class="material-symbols-outlined text-[18px]">public</span></a><a aria-label="YouTube" class="w-9 h-9 rounded-lg bg-navy-surface flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all duration-200 hover:scale-110" href="#"><span class="material-symbols-outlined text-[18px]">smart_display</span></a><a aria-label="Telegram" class="w-9 h-9 rounded-lg bg-navy-surface flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all duration-200 hover:scale-110" href="#"><span class="material-symbols-outlined text-[18px]">send</span></a><a aria-label="Instagram" class="w-9 h-9 rounded-lg bg-navy-surface flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all duration-200 hover:scale-110" href="#"><span class="material-symbols-outlined text-[18px]">photo_camera</span></a></div></div></div></div><div class="pt-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md text-surface-container-highest font-body-sm text-body-sm border-t border-slate-800"><p>© 2025 BS Coaching Centre. All rights reserved. Registered Educational Trust.</p><div class="flex items-center gap-space-md"><span>Nangloi Campus, Delhi</span><span>•</span><a class="hover:text-surface-bright transition-colors" href="#">Privacy Policy</a><span>•</span><a class="hover:text-surface-bright transition-colors" href="#">Terms of Admission</a></div></div></div></footer>
+
+
+  <script>
+    (() => {
+      const TOTAL_FRAMES = 240;
+      const FRAME_DIR    = 'frames/';
+      const FRAME_PREFIX = 'ezgif-frame-';
+      const FRAME_EXT    = '.jpg';
+
+      const canvas       = document.getElementById('canvas');
+      const ctx          = canvas.getContext('2d');
+      const loader       = document.getElementById('loader');
+      const loaderBar    = document.getElementById('loader-bar');
+      const loaderText   = document.getElementById('loader-text');
+      const scrollHint   = document.getElementById('scroll-hint');
+      const frameCounter = document.getElementById('frame-counter');
+
+      const images = new Array(TOTAL_FRAMES);
+      let   loaded = 0;
+      let   currentFrame = 0;
+
+      function pad(n) {
+        return String(n).padStart(3, '0');
+      }
+
+      function frameSrc(i) {
+        return `${FRAME_DIR}${FRAME_PREFIX}${pad(i + 1)}${FRAME_EXT}`;
+      }
+
+      function resizeCanvas(img) {
+        const imgW = img ? img.naturalWidth  : 1456;
+        const imgH = img ? img.naturalHeight : 816;
+        const ratio = imgW / imgH;
+
+        const winW = window.innerWidth;
+        const winH = window.innerHeight;
+
+        let w = winW;
+        let h = w / ratio;
+
+        if (h > winH) {
+          h = winH;
+          w = h * ratio;
+        }
+
+        canvas.width  = Math.round(w);
+        canvas.height = Math.round(h);
+      }
+
+      function drawFrame(index) {
+        const img = images[index];
+        if (!img) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        if (frameCounter) {
+          frameCounter.textContent = `Frame ${index + 1} / ${TOTAL_FRAMES}`;
+        }
+      }
+
+      function onScroll() {
+        const scrollContainer = document.getElementById('scroll-container');
+        if (!scrollContainer) return;
+        const rect = scrollContainer.getBoundingClientRect();
+        const maxScroll = scrollContainer.scrollHeight - window.innerHeight;
+        const scrollTop = -rect.top;
+        const progress  = Math.min(Math.max(scrollTop / maxScroll, 0), 1);
+        const frameIndex = Math.min(
+          Math.floor(progress * (TOTAL_FRAMES - 1)),
+          TOTAL_FRAMES - 1
+        );
+
+        if (frameIndex !== currentFrame) {
+          currentFrame = frameIndex;
+          drawFrame(currentFrame);
+        }
+
+        if (scrollHint) {
+          if (scrollTop > 80) {
+            scrollHint.classList.add('hidden');
+          } else {
+            scrollHint.classList.remove('hidden');
+          }
+        }
+      }
+
+      function preloadAll() {
+        for (let i = 0; i < TOTAL_FRAMES; i++) {
+          const img = new Image();
+          img.src = frameSrc(i);
+
+          img.onload = () => {
+            images[i] = img;
+            loaded++;
+
+            const pct = (loaded / TOTAL_FRAMES) * 100;
+            if (loaderBar) loaderBar.style.width = pct + '%';
+            if (loaderText) loaderText.textContent = `Loading frames… ${loaded} / ${TOTAL_FRAMES}`;
+
+            if (i === 0) {
+              resizeCanvas(img);
+              drawFrame(0);
+            }
+
+            if (loaded === TOTAL_FRAMES) {
+              onAllLoaded();
+            }
+          };
+
+          img.onerror = () => {
+            loaded++;
+            if (loaded === TOTAL_FRAMES) onAllLoaded();
+          };
+        }
+      }
+
+      function onAllLoaded() {
+        setTimeout(() => {
+          if (loader) loader.classList.add('hidden');
+          onScroll();
+        }, 300);
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', () => {
+        resizeCanvas(images[currentFrame]);
+        drawFrame(currentFrame);
+      });
+
+      resizeCanvas(null);
+      preloadAll();
+    })();
+
+    // Mobile menu toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      if (menu) {
+        menu.classList.toggle('hidden');
+      }
+    }
+    document.getElementById('mobile-menu-toggle')?.addEventListener('click', toggleMobileMenu);
+  </script>
+
+
+</body>
+</html>
